@@ -1,1 +1,1 @@
-console.log("Hey Kush")
+console.log("Hey Kush!! the javascript static file is working")
