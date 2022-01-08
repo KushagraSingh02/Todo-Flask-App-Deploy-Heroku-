@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title  %} Home {% endblock title   %}
+{% block body %}
+    
+
+    
+      <br>
+      <br>
+      
+      <div class="container my-3" style="border: solid black 1px;padding: 4px 4px 4px 4px;border-radius: 4px;">
+          <h2 style="align-content:flex-end;margin-left: 550px;">Add a Task</h2>
+        <form action="/" method="POST" style="padding: 5px 5px 5px 5px;">
+            <div class="mb-3">
+              <label for="title" class="form-label">Task</label>
+              <input type="text" class="form-control" name="title" id="title" aria-describedby="emailHelp">
+            </div>
+            <div class="mb-3">
+              <label for="desc" class="form-label">Task Description</label>
+              <input type="text" class="form-control" name ="desc" id="desc">
+            </div>
+            
+            <button type="submit" class="btn btn-outline-primary">Submit</button>
+          </form>
+          
+      </div>
+      <br>
+      <br>
+      <div class="container my-8">
+          <h2>Your Todos</h2>
+          {% if allTodos|length==0 %}
+          <div class="alert alert-info" role="alert">
+            Add a Task to be Done
+          </div>
+          {% else %}
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">SNo.</th>
+                <th scope="col">Title</th>
+                <th scope="col">Description</th>
+                <th scope="col">Time</th>
+              </tr>
+            </thead>
+            <tbody>
+                <!-- below is all jinja 2 syntax -->
+                {% for todo in allTodos %}
+                <tr>
+                    <th scope="row">{{loop.index}}</th> 
+                    <td>{{todo.title}} </td>
+                    <td>{{todo.desc}}</td>
+                    <td>{{todo.data_created}}</td>
+                    <td>
+                        <a href="/delete/{{todo.sno}}" type="button" class="btn btn-outline-dark btn-sm mx-2">Delete</a>
+                        <a href="/update/{{todo.sno}}" type="button" class="btn btn-outline-success btn-sm mx-2">Update</a>
+                    </td>
+                  </tr>
+
+                </tbody>
+                {% endfor %}
+              
+          {% endif %}
+        
+              
+          </table>
+      </div>
+{% endblock body%}  
